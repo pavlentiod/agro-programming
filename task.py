@@ -4,30 +4,37 @@ from pioneer_sdk import Pioneer
 
 from src import launch
 
-
 def fly_task():
+    """
+    Функция полёта квадрокоптера.
+
+    Здесь необходимо реализовать:
+    - взлёт;
+    - облёт всей площадки размером 3×3 м (шаг сетки 1 м);
+    - сканирование ArUco-маркеров (происходит автоматически);
+    - возврат в начальную точку;
+    - приземление.
+
+    Используйте методы:
+        drone.arm()
+        drone.takeoff()
+        drone.go_to_local_point(x, y, z, yaw)
+        drone.land()
+
+    Подробнее: https://docs.geoscan.ru/pioneer/programming/python/pioneer-sdk-methods.html
+    """
+
     drone = Pioneer()
-    height = 1
-    yaw = 0.0
 
-    drone.arm()
-    drone.takeoff()
-    time.sleep(3)
-
-    cols = 3
-    rows = 3
-    cell_size = 1
-    for col in range(0, cols):
-        for row in range(0, rows):
-            if col % 2 == 0:
-                drone.go_to_local_point(-col * cell_size, row * cell_size, height, yaw)
-            else:
-                drone.go_to_local_point(-(cols - col - 1) * cell_size, row * cell_size, height, yaw)
-            time.sleep(6)
-    drone.go_to_local_point(0, 0, height, yaw)
-    time.sleep(5)
-    drone.land()
-
+    # TODO: Запрограммируйте здесь логику полёта
+    # Пример начала:
+    # drone.arm()
+    # drone.takeoff()
+    # time.sleep(3)
+    # drone.go_to_local_point(0, 0, 1, 0.0)
+    # ...
+    # drone.land()
+    pass
 
 if __name__ == '__main__':
     launch(fly_task)
